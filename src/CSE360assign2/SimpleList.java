@@ -1,5 +1,5 @@
 /**
- * Assignment 1
+ * Assignment 2
  * CSE360 W 3:05 - 4:20
  *
  * Name: Stephanie Lee
@@ -8,6 +8,9 @@
  *
  * This class will manipulate a simple list, including funtions
  * that will add, remove, count, and list elements.
+ * 
+ * repository:
+ * https://github.com/stephanie452780/CSE360assign2
  */
 
 package CSE360assign2;
