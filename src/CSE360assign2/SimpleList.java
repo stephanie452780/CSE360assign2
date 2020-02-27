@@ -5,6 +5,9 @@
  * Name: Stephanie Lee
  * Student ID: 1215239818
  * Class ID: 418
+ *
+ * This class will manipulate a simple list, including funtions
+ * that will add, remove, count, and list elements.
  */
 
 package CSE360assign2;
@@ -29,13 +32,37 @@ public class SimpleList
 
     /**
      * This method will take the value passed in the 
-     * parameter and add it to the front of the list
+     * parameter and add it to the front of the list.
+     * If the list is full upon accessing this method,
+     * 50% of the elements will be cleared in order to
+     * add elements.
      * 
      * @param newNum
      * @return none
      */
     public void add(int newNum)
     {
+        //if list is already full
+        if(list.length == count)
+        {
+            //make new temporary array and copy elements over
+            int[] copyList = new int[10];
+
+
+            for(int i = 0; i < (int)(list.length-(list.length*(0.5))); i++)
+            {
+                copyList[i] = list[i];
+            }
+            for(int i = 0; i < count; i++)
+            {
+                list[i] = copyList[i];
+            }
+
+            //adjust count
+            count = count - (int)(list.length-(list.length*(0.5)));
+
+        }
+
         //adjust count
         if(count < 10)
         {
@@ -43,28 +70,27 @@ public class SimpleList
         }
 
         int[] temp = new int[10];
-        
         //copy list array into temp array
-        for(int tempCounter = 0; tempCounter < count; tempCounter++)
+        for(int i = 0; i < count; i++)
         {
-            temp[tempCounter] = list[tempCounter];
+            temp[i] = list[i];
         }
 
         //add newNum to beginning of array
         list[0] = newNum;
 
         //shift array
-        for(int tempCounter = 1; tempCounter < count; tempCounter++)
+        for(int i = 1; i < count; i++)
         {
-
-            list[tempCounter] = temp[tempCounter-1];
+            list[i] = temp[i-1];
         }
 
     }
     
     /**
      * This method will remove the element from 
-     * the list 
+     * the list. If the list has more than 25% of
+     * unused space, 25% of the list will be deleted.
      * 
      * @param remove
      * @return none
@@ -98,6 +124,25 @@ public class SimpleList
             for(int tempCounter = 9 ; tempCounter >= count; tempCounter--)
             {
                 list[tempCounter] = 0;
+            }
+        }
+
+        //check if list has 25% empty space
+        if(count < (int)(list.length-(list.length*(0.25))) && count > 1)
+        {
+            int[] tempList = new int[10];
+            for(int i = 0; i < (int)(count-(count*(0.25))); i++)
+            {
+                tempList[i] = list[i];
+            }
+
+            //adjust count
+            count = (int)(count-(count*(0.25)));
+
+            //add elements back to original list
+            for(int i = 0; i < count; i++)
+            {
+                list[i] = tempList[i];
             }
         }
     }
