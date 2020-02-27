@@ -221,5 +221,91 @@ public class SimpleList
         return -1;
     }
 
+    /**
+     * This method will add the element to the end
+     * of the list. If list is full, it will clear
+     * 50% of the list to make room.
+     * @param num
+     * @return none
+     */
+    public void append(int num)
+    {
+        //if list is already full
+        if(list.length == count)
+        {
+            //make new temporary array and copy elements over
+            int[] copyList = new int[10];
+
+
+            for(int i = 0; i < (int)(list.length-(list.length*(0.5))); i++)
+            {
+                copyList[i] = list[i];
+            }
+            for(int i = 0; i < count; i++)
+            {
+                list[i] = copyList[i];
+            }
+
+            //adjust count
+            count = count - (int)(list.length-(list.length*(0.5)));
+        }
+
+        //add element to end of list
+        list[count] = num;
+        count++;
+
+    }
+
+    /**
+     * This method will return the 1st element
+     * of the list
+     *
+     * @return 1st element of list
+     */
+
+    public int first()
+    {
+        if(count == 0)
+        {
+            return -1;
+        }
+        else
+        {
+            return list[0];
+        }
+    }
+
+    /**
+     * This method will return the last
+     * element of the list
+     *
+     * @return last element of list
+     */
+
+    public int last()
+    {
+        if(count == 0)
+        {
+            return -1;
+        }
+        else
+        {
+
+            return list[count-1];
+        }
+    }
+
+    /**
+     * This method will return the size of
+     * the list.
+     *
+     * @return size of list
+     */
+    public int size()
+    {
+        return list.length;
+    }
+
+
 
 }
